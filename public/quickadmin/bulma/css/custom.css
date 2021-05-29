@@ -31,6 +31,10 @@
   margin-top: 6em;
 }
 
-.and-full-wdith {
-  width: 100% !important;
+.footer-section {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  vertical-align: middle;
+  margin-top: 10em;
 }

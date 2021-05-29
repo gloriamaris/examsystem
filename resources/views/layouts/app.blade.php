@@ -58,13 +58,15 @@
 
     @include('partials.javascripts')
 
-    <footer class="footer mt-5">
-        <div class="content has-text-centered">
-            <p>
-            <strong>University of the Philippines Open University Exam System</strong> by Monique Dingding <a href="https://github.com/gloriamaris">@gloriamaris</a>. Final Project deliverable for
-            <a href="https://upou.instructure.com/courses/117">IS226 Web Information Systems</a>. <br/>Copyright 2021. All rights reserved.
-            </p>
-        </div>
-    </footer>
+    <div class="footer-section">
+        <footer class="footer mt-5">
+            <div class="content has-text-centered">
+                <p>
+                    <strong>University of the Philippines Open University Exam System</strong> by Monique Dingding <a href="https://github.com/gloriamaris">@gloriamaris</a>. Final Project deliverable for
+                    <a href="https://upou.instructure.com/courses/117">IS226 Web Information Systems</a>. <br/>Copyright 2021. All rights reserved.
+                </p>
+            </div>
+        </footer>
+    </div>
 </body>
 </html>
