@@ -1,7 +1,7 @@
 <nav class="navbar navbar-height is-fixed-top" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a class="navbar-item" href="{{ route('home') }}">
-            <img src="upou-exam-logo.png" class="header-img">
+            <img src="{{ url('upou-exam-logo.png') }}" class="header-img">
         </a>
     </div>
 
@@ -23,7 +23,14 @@
         </a>
 
         <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link {{ \Route::current()->getName() === 'users.index' || \Route::current()->getName() === 'roles.index' ? 'navbar-link-is-active' : '' }}">
+            <?php 
+                $isDropdownItemActive = \Route::current()->getName() === 'users.index' || \Route::current()->getName() === 'roles.index'
+                                        || \Route::current()->getName() === 'users.create' || \Route::current()->getName() === 'roles.create';
+                
+                $isUsersActive = \Route::current()->getName() === 'users.index' || \Route::current()->getName() === 'users.create';
+                $isRolesActive = \Route::current()->getName() === 'roles.index' || \Route::current()->getName() === 'roles.create';
+            ?>
+            <a class="navbar-link {{ $isDropdownItemActive ? 'navbar-link-is-active' : '' }}">
             Admin Panel
             </a>
 
@@ -32,11 +39,11 @@
                     href="{{ route('users.index') }}">
                     Announcements
                 </a>
-                <a class="navbar-item {{ \Route::current()->getName() === 'users.index' ? 'navbar-link-is-active' : '' }}"
+                <a class="navbar-item {{ $isUsersActive ? 'navbar-link-is-active' : '' }}"
                     href="{{ route('users.index') }}">
                     Users
                 </a>
-                <a class="navbar-item {{ \Route::current()->getName() === 'roles.index' ? 'navbar-link-is-active' : '' }}"
+                <a class="navbar-item {{ $isRolesActive ? 'navbar-link-is-active' : '' }}"
                     href="{{ route('roles.index') }}">
                     User Roles
                 </a>

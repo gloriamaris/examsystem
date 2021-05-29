@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Role;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUsersRequest;
 use App\Http\Requests\UpdateUsersRequest;
@@ -36,7 +37,9 @@ class UsersController extends Controller
             'roles' => \App\Role::get()->pluck('title', 'id')->prepend('Please select', ''),
         ];
 
-        return view('users.create', $relations);
+        $roles = Role::all();
+
+        return view('users.create', compact('relations', 'roles'));
     }
 
     /**
@@ -65,7 +68,10 @@ class UsersController extends Controller
             'roles' => \App\Role::get()->pluck('title', 'id')->prepend('Please select', ''),
         ];
 
-        $user = User::findOrFail($id);
+        // $user = User::findOrFail($id);
+        $user = User::where('users.id', $id)
+                ->join('roles', 'roles.id', '=', 'users.role_id')
+                ->get();
 
         return view('users.edit', compact('user') + $relations);
     }
