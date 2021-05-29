@@ -50,10 +50,9 @@
                 <a class="button is-primary" href="{{ route('tests.index') }}">
                     <strong>Create exam</strong>
                 </a>
-                <a class="button is-dark is-inverted"
-                    href="{{ route('home') }}#logout">
-                    Log out
-                </a>
+                {!! Form::open(['route' => 'auth.logout', 'id' => 'logout']) !!}
+                    <button type="submit" class="button is-dark is-inverted">Log out</button>
+                {!! Form::close() !!}
                 </div>
             </div>
         </div>

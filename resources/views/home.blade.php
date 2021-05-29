@@ -40,7 +40,7 @@ Dashboard - UP Online Examination System
             </div>
         </div>
         <div class="columns mt-5">
-            <div class="column is-three-fifths">
+            <div class="column is-two-thirds">
                 <article class="panel is-primary">
                     <p class="panel-heading">Open exams</p>
                     <div class="panel-block">
