@@ -1,75 +1,72 @@
 @extends('layouts.auth')
 
+@section('title')
+Reset Password
+@endsection
+
 @section('content')
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset password</div>
-                <div class="panel-body">
-                    @if (count($errors) > 0)
-                        <div class="alert alert-danger">
-                            <strong>Whoops!</strong> There were problems with input:
-                            <br><br>
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-
-                    <form class="form-horizontal"
-                          role="form"
-                          method="POST"
-                          action="{{ url('password/reset') }}">
-                        <input type="hidden"
-                               name="_token"
-                               value="{{ csrf_token() }}">
-                        <input type="hidden" name="token" value="{{ $token }}">
-
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Email</label>
-
-                            <div class="col-md-6">
-                                <input type="email"
-                                       class="form-control"
-                                       name="email"
-                                       value="{{ old('email') }}">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input type="password"
-                                       class="form-control"
-                                       name="password">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Confirm password</label>
-
-                            <div class="col-md-6">
-                                <input type="password"
-                                       class="form-control"
-                                       name="password_confirmation">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit"
-                                        class="btn btn-primary"
-                                        style="margin-right: 15px;">
-                                    Reset password
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+<div class="container">
+    <div class="columns is-desktop">
+        <div class="column"></div>
+        <div class="column is-half">
+            <div class="column is-full">
+                <img src="/upou-examsystem-logo.png" classname="login-img">
             </div>
+            <nav class="panel">
+                <p class="panel-heading">
+                    Reset Password
+                </p>
+                <div class="panel-block">
+                    <div class="column">
+                        @if (count($errors) > 0)
+                            <article class="message is-danger">
+                                <div class="message-body">
+                                    @foreach ($errors->all() as $error)
+                                        <p>{{ $error }}</p>
+                                    @endforeach
+                                </div>
+                            </article>
+                        @endif
+                        <form role="form" method="POST" action="{{ url('password/reset') }}">
+                            <div class="field">
+                                <label class="label">E-mail address*</label>
+                                <div class="control has-icons-left has-icons-right">
+                                    <input class="input {{ $errors->has('email') ? 'is-danger' : '' }}" name="email" type="email" placeholder="person@up.edu.ph" value="{{ old('email') }}" required>
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-envelope"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label">Password*</label>
+                                <div class="control has-icons-left has-icons-right">
+                                    <input class="input {{ $errors->has('password') ? 'is-danger' : '' }}" name="password" type="password" placeholder="******" value="" required>
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-lock"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label">Confirm password*</label>
+                                <div class="control has-icons-left has-icons-right">
+                                    <input class="input {{ $errors->has('password_confirmation') ? 'is-danger' : '' }}" name="password_confirmation" type="password" placeholder="******" value="" required>
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-lock"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+                            <input type="hidden" name="token" value="{{ $token }}">
+                            <div class="field">
+                                <input type="submit" class="button is-primary" value="Reset password"/>
+                                <a href="{{ route('auth.login') }}" class="button is-info is-inverted">Go back to login</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </nav>
         </div>
+        <div class="column"></div>
     </div>
+</div>
 @endsection

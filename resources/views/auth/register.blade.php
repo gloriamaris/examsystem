@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('title')
-Online Examination System -Register
+Register to the UP Open University Exam System
 @endsection
 
 @section('content')
