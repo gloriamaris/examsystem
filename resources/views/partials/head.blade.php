@@ -13,7 +13,11 @@
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all"
       rel="stylesheet"
       type="text/css"/>
-<link rel="stylesheet"
+<link href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      rel="stylesheet" 
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"/>
+<!-- <link rel="stylesheet"
       href="{{ url('quickadmin/css') }}/font-awesome.min.css"/>
 <link rel="stylesheet"
       href="{{ url('quickadmin/css') }}/bootstrap.min.css"/>
@@ -22,7 +26,11 @@
 <link rel="stylesheet"
       href="{{ url('quickadmin/css') }}/quickadmin-layout.css"/>
 <link rel="stylesheet"
-      href="{{ url('quickadmin/css') }}/quickadmin-theme-default.css"/>
+      href="{{ url('quickadmin/css') }}/quickadmin-theme-default.css"/> -->
+<link rel="stylesheet"
+      href="{{ url('quickadmin/bulma/css') }}/bulma.min.css"/>
+<link rel="stylesheet"
+      href="{{ url('quickadmin/bulma/css') }}/custom.css"/>
 <link rel="stylesheet"
       href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet"
@@ -36,4 +44,3 @@
 
 <meta property="og:title" content="LaraQuiz - how well do you know Laravel?" />
 <meta property="og:image" content="{{ asset('laraquiz.png') }}" />
-<meta property="og:description" content="Mini-project with Laravel Quiz. Powered by QuickAdminPanel.com code generator." />
