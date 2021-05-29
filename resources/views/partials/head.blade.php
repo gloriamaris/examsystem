@@ -17,30 +17,10 @@
       rel="stylesheet" 
       integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
       crossorigin="anonymous"/>
-<!-- <link rel="stylesheet"
-      href="{{ url('quickadmin/css') }}/font-awesome.min.css"/>
-<link rel="stylesheet"
-      href="{{ url('quickadmin/css') }}/bootstrap.min.css"/>
-<link rel="stylesheet"
-      href="{{ url('quickadmin/css') }}/components.css"/>
-<link rel="stylesheet"
-      href="{{ url('quickadmin/css') }}/quickadmin-layout.css"/>
-<link rel="stylesheet"
-      href="{{ url('quickadmin/css') }}/quickadmin-theme-default.css"/> -->
 <link rel="stylesheet"
       href="{{ url('quickadmin/bulma/css') }}/bulma.min.css"/>
 <link rel="stylesheet"
       href="{{ url('quickadmin/bulma/css') }}/custom.css"/>
-<link rel="stylesheet"
-      href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
-<link rel="stylesheet"
-      href="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css"/>
-<link rel="stylesheet"
-      href="https://cdn.datatables.net/select/1.2.0/css/select.dataTables.min.css"/>
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-timepicker-addon.min.css"/>
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.standalone.min.css"/>
 
-<meta property="og:title" content="LaraQuiz - how well do you know Laravel?" />
+<meta property="og:title" content="UP Open University Exam System" />
 <meta property="og:image" content="{{ asset('laraquiz.png') }}" />

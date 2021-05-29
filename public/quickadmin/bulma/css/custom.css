@@ -1,3 +1,7 @@
+.page-container {
+  background-color: #fafafa;
+}
+
 .login-img {
   width: 80%;
   text-align: center;
@@ -6,4 +10,27 @@
 .login-link {
   float: right;
   font-weight: normal;
+}
+
+.navbar-height {
+  min-height: 6em !important;
+}
+
+.navbar-link-is-active {
+  background-color: #fafafa;
+  color: #8B303A !important;
+  font-weight: bold;
+}
+
+.navbar-item img {
+  width: 100%;
+  max-height: 50px;
+}
+
+.with-navbar-fixed-top {
+  margin-top: 6em;
+}
+
+.and-full-wdith {
+  width: 100% !important;
 }

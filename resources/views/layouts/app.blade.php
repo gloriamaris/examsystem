@@ -9,49 +9,41 @@
 
     @include('partials.analytics')
 
-    <div class="page-header navbar navbar-fixed-top">
+    <div class="page-header">
         @include('partials.header')
     </div>
 
     <div class="clearfix"></div>
 
-    <div class="page-container">
-        <div class="page-sidebar-wrapper">
-            @include('partials.sidebar')
-        </div>
+    <div class="container is-widescreen with-navbar-fixed-top">
+        <div class="columns">
+            @if(isset($siteTitle))
+                <h3 class="page-title">
+                    {{ $siteTitle }}
+                </h3>
+            @endif
 
-        <div class="page-content-wrapper">
-            <div class="page-content">
-
-                @if(isset($siteTitle))
-                    <h3 class="page-title">
-                        {{ $siteTitle }}
-                    </h3>
-                @endif
-
-                <div class="row">
-                    <div class="col-md-12">
-
-                        @if (Session::has('message'))
-                            <div class="note note-info">
-                                <p>{{ Session::get('message') }}</p>
-                            </div>
-                        @endif
-                        @if ($errors->count() > 0)
-                            <div class="note note-danger">
-                                <ul class="list-unstyled">
-                                    @foreach($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-
-                        @yield('content')
-
+            {{-- 
+                TODO: To correct error messages in this page
+                --}}
+            {{-- <div class="column">
+                @if (Session::has('message'))
+                    <div class="note note-info">
+                        <p>{{ Session::get('message') }}</p>
                     </div>
-                </div>
-            </div>
+                @endif
+                @if ($errors->count() > 0)
+                    <div class="note note-danger">
+                        <ul class="list-unstyled">
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+            </div> --}}
+
+            @yield('content')
         </div>
     </div>
 
@@ -65,5 +57,14 @@
     {!! Form::close() !!}
 
     @include('partials.javascripts')
+
+    <footer class="footer mt-5">
+        <div class="content has-text-centered">
+            <p>
+            <strong>University of the Philippines Open University Exam System</strong> by Monique Dingding <a href="https://github.com/gloriamaris">@gloriamaris</a>. Final Project deliverable for
+            <a href="https://upou.instructure.com/courses/117">IS226 Web Information Systems</a>. <br/>Copyright 2021. All rights reserved.
+            </p>
+        </div>
+    </footer>
 </body>
 </html>
