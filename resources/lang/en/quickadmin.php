@@ -88,6 +88,8 @@ return [
 			'question-text' => 'Question text',
 			'code-snippet' => 'Code snippet',
 			'answer-explanation' => 'Answer explanation',
+			'correct-answer' => 'Correct Answer',
+			'options' => 'Options',
 			'more-info-link' => 'More info link',
 		],
 	],
@@ -95,7 +97,7 @@ return [
 	'questions-options' => [
 		'title' => 'Questions Options',
 		'fields' => [
-			'question' => 'question',
+			'question' => 'Question',
 			'option' => 'Option',
 			'correct' => 'Correct',
 		],

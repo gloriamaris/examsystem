@@ -56,7 +56,7 @@ Dashboard - UP Online Examination System
                     @endforeach
                 @endif
                 <div class="panel-block p-3">
-                    <a href="{{ route('questions.index') }}" class="button is-outlined is-primary is-fullwidth">View more</a>
+                    <a href="{{ route('exams.index') }}" class="button is-outlined is-primary is-fullwidth">View more</a>
                 </div>
             </article>
             <article class="panel is-info">

@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Exam;
+use App\Http\Requests\StoreExamsQuestionsRequest;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreExamsRequest;
 use App\Http\Requests\UpdateExamsRequest;
 use App\Question;
 use App\QuestionsOption;
 use App\Topic;
 use Illuminate\Support\Facades\DB;
 
-class ExamsController extends Controller
+class ExamsQuestionsController extends Controller
 {
     protected $statuses = ['open', 'closed'];
 
@@ -32,7 +32,7 @@ class ExamsController extends Controller
             ->whereNull('e.deleted_at')
             ->get();
 
-        return view('exams.index', compact('exams'));
+        return view('exams_questions.index', compact('exams'));
     }
 
     /**
@@ -45,20 +45,35 @@ class ExamsController extends Controller
         $courses = Topic::all();
         $statuses = $this->statuses;
 
-        return view('exams.create', compact('courses', 'statuses'));
+        return view('exams_questions.create', compact('courses', 'statuses'));
     }
 
     /**
      * Store a newly created Exam in storage.
      *
-     * @param  \App\Http\Requests\StoreExamsRequest  $request
+     * @param  \App\Http\Requests\StoreExamsQuestionsRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreExamsRequest $request)
+    public function store(StoreExamsQuestionsRequest $request)
     {
-        Exam::create($request->all());
 
-        return redirect()->route('exams.index');
+        $examId = $request->exam_id;
+
+        $question = Question::create($request->all());
+
+        foreach ($request->input() as $key => $value) {
+            if (strpos($key, 'option') !== false && $value !== '') {
+                $status =  $request->input('correct') == $key ? 1 : 0;
+
+                QuestionsOption::create([
+                    'question_id' => $question->id,
+                    'option'      => $value,
+                    'correct'     => $status
+                ]);
+            }
+        }
+
+        return redirect()->route('exams.show', $examId);
     }
 
 
@@ -102,15 +117,10 @@ class ExamsController extends Controller
     public function show($id)
     {
         $exam = Exam::findOrFail($id);
-        $questions = Question::where('topic_id', $exam->topic_id)->get();
-        $options = [];
-        $count = 0;
+        $topic = Topic::findOrFail($exam->topic_id);
+        $options = [1, 2, 3, 4, 5];
 
-        foreach ($questions as $question) {
-            $options[$question->id][$count++] = QuestionsOption::where('question_id', $question->id)->get();
-        }
-
-        return view('exams.manage', compact('exam', 'questions', 'options'));
+        return view('exams_questions.create', compact('topic', 'exam', 'options'));
     }
 
 
