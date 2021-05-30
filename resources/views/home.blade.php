@@ -43,30 +43,18 @@ Dashboard - UP Online Examination System
         <div class="column is-two-thirds">
             <article class="panel is-primary">
                 <p class="panel-heading">Open exams</p>
-                <div class="panel-block">
-                    <a class="panel-block">
-                        <span class="panel-icon">
-                        <i class="fas fa-book" aria-hidden="true"></i>
-                        </span>
-                        IS226 - Midterm Exam
-                    </a>
-                </div>
-                <div class="panel-block">
-                    <a class="panel-block">
-                        <span class="panel-icon">
-                        <i class="fas fa-book" aria-hidden="true"></i>
-                        </span>
-                        IS226 - Final Exam
-                    </a>
-                </div>
-                <div class="panel-block">
-                    <a class="panel-block">
-                        <span class="panel-icon">
-                        <i class="fas fa-book" aria-hidden="true"></i>
-                        </span>
-                        DEVC208 - Final Exam
-                    </a>
-                </div>
+                @if (count($exams) > 0)
+                    @foreach ($exams as $exam)
+                    <div class="panel-block">
+                        <a href="{{ route('exams.edit', $exam->id) }}" class="panel-block">
+                            <span class="panel-icon">
+                            <i class="fas fa-book" aria-hidden="true"></i>
+                            </span>
+                            {{ $exam->name }} - {{ $exam->title }}
+                        </a>
+                    </div>
+                    @endforeach
+                @endif
                 <div class="panel-block p-3">
                     <a href="{{ route('questions.index') }}" class="button is-outlined is-primary is-fullwidth">View more</a>
                 </div>

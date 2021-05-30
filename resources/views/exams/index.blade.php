@@ -33,7 +33,7 @@ Exams - UP Online Examination System
                                     <td>{{ $exam->title }}</td>
                                     <td>{{ $exam->name }}</td>
                                     <td>{{ date('j F, Y', strtotime($exam->date_start)) }} - {{ date('j F, Y', strtotime($exam->date_end)) }}</td>
-                                    <td>{{ $exam->status }}</td>
+                                    <td><span class="tag {{ $exam->status == "open" ? "is-primary" : "" }} is-light">{{ $exam->status }}</span></td>
                                     <td>TODO</td>
                                     <td>
                                         <a href="{{ route('questions.create') }}" class="button is-small is-link is-outlined">Manage questions</a>

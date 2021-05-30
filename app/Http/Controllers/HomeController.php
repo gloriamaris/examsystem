@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Announcement;
+use App\Exam;
 use App\Http\Requests;
 use App\Question;
 use App\Result;
@@ -42,6 +43,14 @@ class HomeController extends Controller
 
         $users = User::orderBy('created_at', 'DESC')->take(5)->get();
 
+        $exams = DB::table('exams as e')
+            ->join('topics', 'e.topic_id', '=', 'topics.id')
+            ->select('e.*', 'topics.title')
+            ->whereNull('e.deleted_at')
+            ->where('status', 'open')
+            ->take(5)
+            ->get();
+
         $topics = Topic::count();
         $questions = Question::count();
         $students = User::where('role_id', '=', 2)->count();
@@ -49,6 +58,6 @@ class HomeController extends Controller
         $quizzes = Test::count();
         $average = Test::avg('result');
 
-        return view('home', compact('questions', 'students', 'faculty', 'quizzes', 'average', 'topics', 'isAdmin', 'announcements', 'users'));
+        return view('home', compact('questions', 'students', 'faculty', 'quizzes', 'average', 'topics', 'isAdmin', 'announcements', 'users', 'exams'));
     }
 }
