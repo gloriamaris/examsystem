@@ -1,59 +1,61 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('quickadmin.roles.title')</h3>
+<div class="column">
+    <h3 class="title is-3">Users</h3>
 
-    <p>
-        <a href="{{ route('roles.create') }}" class="btn btn-success">@lang('quickadmin.add_new')</a>
-    </p>
-
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            @lang('quickadmin.list')
-        </div>
-
-        <div class="panel-body">
-            <table class="table table-bordered table-striped {{ count($roles) > 0 ? 'datatable' : '' }} dt-select">
-                <thead>
-                    <tr>
-                        <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
-                        <th>@lang('quickadmin.roles.fields.title')</th>
-                        <th>&nbsp;</th>
-                    </tr>
-                </thead>
-                
-                <tbody>
-                    @if (count($roles) > 0)
-                        @foreach ($roles as $role)
-                            <tr data-entry-id="{{ $role->id }}">
-                                <td></td>
-                                <td>{{ $role->title }}</td>
-                                <td>
-                                    <a href="{{ route('roles.show',[$role->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.view')</a>
-                                    <a href="{{ route('roles.edit',[$role->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.edit')</a>
-                                    {!! Form::open(array(
-                                        'style' => 'display: inline-block;',
-                                        'method' => 'DELETE',
-                                        'onsubmit' => "return confirm('".trans("quickadmin.are_you_sure")."');",
-                                        'route' => ['roles.destroy', $role->id])) !!}
-                                    {!! Form::submit(trans('quickadmin.delete'), array('class' => 'btn btn-xs btn-danger')) !!}
-                                    {!! Form::close() !!}
-                                </td>
-                            </tr>
-                        @endforeach
-                    @else
+    <div class="columns">
+        <div class="column">
+            <a href="{{ route('users.create') }}" class="button is-info mb-5"><i class="fa fa-plus mr-1"></i>Add new role</a>
+            <div class="table-container">
+                <table class="table is-fullwidth {{ count($users) > 0 ? 'tbl' : '' }}">
+                    <thead>
                         <tr>
-                            <td colspan="3">@lang('quickadmin.no_entries_in_table')</td>
+                            <th style="text-align:center;">No.</th>
+                            <th>@lang('quickadmin.roles.fields.title')</th>
+                            <th>&nbsp;</th>
                         </tr>
-                    @endif
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @if (count($roles) > 0)
+                            <?php $count = 0; ?>
+                            @foreach ($roles as $role)
+                                <tr data-entry-id="{{ $user->id }}">
+                                    <td style="text-align:center;">{{ ++$count }}</td>
+                                    <td>{{ $role->title }}</td>
+                                    <td>
+                                        @if ($role->id !== 1)
+                                        <a href="{{ route('roles.edit',[$role->id]) }}" class="button is-small is-link is-outlined">@lang('quickadmin.edit')</a>
+                                        
+                                        {!! Form::open(array(
+                                            'style' => 'display: inline-block;',
+                                            'method' => 'DELETE',
+                                            'onsubmit' => "return confirm('".trans("quickadmin.are_you_sure")."');",
+                                            'route' => ['users.destroy', $role->id])) !!}
+                                        {!! Form::submit(trans('quickadmin.delete'), array('class' => 'button is-small is-inverted is-danger')) !!}
+                                        {!! Form::close() !!}
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr>
+                                <td colspan="5">@lang('quickadmin.no_entries_in_table')</td>
+                            </tr>
+                        @endif
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2">Displaiying {{ count($users) }} item(s)</td>
+                            <td colspan="1">
+                                <a href="#" class="button is-inverted is-small is-info" disabled>Prev</a>
+                                <a href="#" class="button is-inverted is-small is-info">Next</a>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
         </div>
     </div>
+</div>
 @stop
-
-@section('javascript')
-    <script>
-        window.route_mass_crud_entries_destroy = '{{ route('roles.mass_destroy') }}';
-    </script>
-@endsection
