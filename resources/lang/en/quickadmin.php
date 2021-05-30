@@ -34,6 +34,15 @@ return [
 		],
 	],
 
+	'announcements' => [
+		'title' => 'Announcements',
+		'fields' => [
+			'author' => 'Author',
+			'description' => 'Description',
+			'created_at' => 'Date Posted',
+		],
+	],
+
 	'users' => [
 		'title' => 'Users',
 		'fields' => [

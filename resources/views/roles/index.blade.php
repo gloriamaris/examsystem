@@ -50,7 +50,7 @@ Roles - UP Online Examination System
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="2">Displaiying {{ count($roles) }} item(s)</td>
+                            <td colspan="2">Displaying {{ count($roles) }} item(s)</td>
                             <td colspan="1">
                                 <a href="#" class="button is-inverted is-small is-info" disabled>Prev</a>
                                 <a href="#" class="button is-inverted is-small is-info">Next</a>

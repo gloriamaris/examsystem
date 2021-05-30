@@ -38,3 +38,8 @@
   vertical-align: middle;
   margin-top: 10em;
 }
+
+pre .preformatted {
+  background-color: #fafafa !important;
+  font-family: Arial, Helvetica, sans-serif;
+}

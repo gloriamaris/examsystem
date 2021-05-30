@@ -18,6 +18,9 @@ class CreateAnnouncementsTable extends Migration
             $table->text('description');
             $table->integer('user_id');
             $table->timestamps();
+            $table->softDeletes();
+
+            $table->index(['deleted_at']);
         });
     }
 

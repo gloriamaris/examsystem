@@ -54,7 +54,7 @@ Users - UP Online Examination System
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="4">Displaiying {{ count($users) }} item(s)</td>
+                            <td colspan="4">Displaying {{ count($users) }} item(s)</td>
                             <td colspan="1">
                                 <a href="#" class="button is-inverted is-small is-info" disabled>Prev</a>
                                 <a href="#" class="button is-inverted is-small is-info">Next</a>

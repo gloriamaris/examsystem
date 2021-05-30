@@ -33,6 +33,8 @@ $this->post('password/reset', 'Auth\ResetPasswordController@reset')->name('auth.
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::resource('announcements', 'AnnouncementsController');
+    Route::post('announcements_mass_destroy', ['uses' => 'AnnouncementsController@massDestroy', 'as' => 'announcements.mass_destroy']);
     Route::resource('tests', 'TestsController');
     Route::resource('roles', 'RolesController');
     Route::post('roles_mass_destroy', ['uses' => 'RolesController@massDestroy', 'as' => 'roles.mass_destroy']);
