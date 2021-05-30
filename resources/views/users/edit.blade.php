@@ -9,7 +9,6 @@ Edit User - UP Online Examination System
     <h3 class="title is-3">Edit user details</h3>
     <div class="columns">
         <div class="column is-half">
-            {{ $user }}
             {!! Form::open(['method' => 'PUT', 'route' => ['users.update', $user->id]]) !!}
                 <div class="field">
                     <label class="label">Full name*</label>
@@ -45,23 +44,6 @@ Edit User - UP Online Examination System
                         <p class="help is-danger">{{ $errors->first('email') }}</p>
                     @endif
                 </div>
-                {{-- <div class="field">
-                    <label class="label">Password*</label>
-                    <div class="control has-icons-left has-icons-right">
-                        <input class="input {{ $errors->has('password') ? 'is-danger' : '' }}" name="password" type="password" placeholder="******" value="******" required>
-                        <span class="icon is-small is-left">
-                            <i class="fas fa-lock"></i>
-                        </span>
-                        @if ($errors->has('password'))
-                            <span class="icon is-small is-right">
-                                <i class="fas fa-exclamation-triangle"></i>
-                            </span>
-                        @endif
-                    </div>
-                    @if ($errors->has('password'))
-                        <p class="help is-danger">{{ $errors->first('password') }}</p>
-                    @endif
-                </div> --}}
                 <div class="field">
                     <label class="label">Role*</label>
                     <div class="control has-icons-left">

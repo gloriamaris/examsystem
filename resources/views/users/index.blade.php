@@ -67,9 +67,3 @@ Users - UP Online Examination System
     </div>
 </div>
 @stop
-
-@section('javascript')
-    <script>
-        window.route_mass_crud_entries_destroy = '{{ route('users.mass_destroy') }}';
-    </script>
-@endsection
