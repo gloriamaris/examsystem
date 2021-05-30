@@ -6,13 +6,13 @@ Roles - UP Online Examination System
 
 @section('content')
 <div class="column">
-    <h3 class="title is-3">Users</h3>
+    <h3 class="title is-3">roles</h3>
 
     <div class="columns">
         <div class="column">
             <a href="{{ route('roles.create') }}" class="button is-info mb-5"><i class="fa fa-plus mr-1"></i>Add new role</a>
             <div class="table-container">
-                <table class="table is-fullwidth {{ count($users) > 0 ? 'tbl' : '' }}">
+                <table class="table is-fullwidth {{ count($roles) > 0 ? 'tbl' : '' }}">
                     <thead>
                         <tr>
                             <th style="text-align:center;">No.</th>
@@ -24,7 +24,7 @@ Roles - UP Online Examination System
                         @if (count($roles) > 0)
                             <?php $count = 0; ?>
                             @foreach ($roles as $role)
-                                <tr data-entry-id="{{ $user->id }}">
+                                <tr data-entry-id="{{ $role->id }}">
                                     <td style="text-align:center;">{{ ++$count }}</td>
                                     <td>{{ $role->title }}</td>
                                     <td>
@@ -50,7 +50,7 @@ Roles - UP Online Examination System
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="2">Displaiying {{ count($users) }} item(s)</td>
+                            <td colspan="2">Displaiying {{ count($roles) }} item(s)</td>
                             <td colspan="1">
                                 <a href="#" class="button is-inverted is-small is-info" disabled>Prev</a>
                                 <a href="#" class="button is-inverted is-small is-info">Next</a>
