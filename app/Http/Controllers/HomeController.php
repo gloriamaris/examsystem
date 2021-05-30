@@ -37,6 +37,7 @@ class HomeController extends Controller
             ->join('users', 'a.user_id', '=', 'users.id')
             ->select('a.*', 'users.name', 'users.email')
             ->take(3)
+            ->orderBy('created_at', 'DESC')
             ->get();
 
         $users = User::orderBy('created_at', 'DESC')->take(5)->get();
