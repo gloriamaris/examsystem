@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Announcement;
 use App\Http\Requests;
 use App\Question;
 use App\Result;
@@ -10,6 +11,7 @@ use App\Test;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -31,6 +33,11 @@ class HomeController extends Controller
     public function index()
     {
         $isAdmin = Auth::user()->isAdmin();
+        $announcements = DB::table('announcements as a')
+            ->join('users', 'a.user_id', '=', 'users.id')
+            ->select('a.*', 'users.name', 'users.email')
+            ->take(3)
+            ->get();
         $topics = Topic::count();
         $questions = Question::count();
         $students = User::whereNull('role_id')->count();
@@ -38,6 +45,6 @@ class HomeController extends Controller
         $quizzes = Test::count();
         $average = Test::avg('result');
 
-        return view('home', compact('questions', 'students', 'faculty', 'quizzes', 'average', 'topics', 'isAdmin'));
+        return view('home', compact('questions', 'students', 'faculty', 'quizzes', 'average', 'topics', 'isAdmin', 'announcements'));
     }
 }

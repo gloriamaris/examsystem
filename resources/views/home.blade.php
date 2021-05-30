@@ -126,50 +126,38 @@ Dashboard - UP Online Examination System
         <div class="column">
             <article class="panel is-warning">
                 <p class="panel-heading">Announcements</p>
+
+                @if (count($announcements > 0))
+                @foreach ($announcements as $announcement)
                 <div class="panel-block">
-                    <div class="p-3">
-                        <div class="media">
-                            <div class="media-left mb-5">
-                                <figure class="image is-48x48">
-                                    <img src="https://cataas.com/cat?width=200&height=200" alt="Placeholder image" width="100%">
-                                </figure>
+                                <div class="p-3">
+                                    <div class="media">
+                                        <div class="media-left mb-5">
+                                            <figure class="image is-48x48">
+                                                <img src="https://i.pinimg.com/474x/69/77/b7/6977b70a129ec184527433bbdf9fe457.jpg"
+                                                    alt="Placeholder image" width="50" height="50"
+                                                    style="overflow: hidden;">
+                                            </figure>
+                                        </div>
+                                        <div class="media-content">
+                                            <p class="title is-4">{{ $announcement->name }}</p>
+                                            <p class="subtitle is-6"><i class="fas fa-envelope" aria-hidden="true"></i>
+                                                {{ $announcement->email }}</p>
+                                        </div>
+                                    </div>
+                                    <p>
+                                        {{ $announcement->description }}
+                                        <br /><br />
+                                        <time
+                                            datetime={{ $announcement->created_at }}>{{ date('g:i A', strtotime($announcement->created_at)) }}
+                                            &middot; {{ date('j F Y', strtotime($announcement->created_at)) }}</time>
+                                    </p>
+
+                                </div>
                             </div>
-                            <div class="media-content">
-                                <p class="title is-4">Mari Anjeli Crisanto</p>
-                                <p class="subtitle is-6"><i class="fas fa-envelope" aria-hidden="true"></i> marianjeli.crisanto@upou.edu.ph</p>
-                            </div>
-                        </div>
-                        <p>
-                            Dear Students,<br/>
-                            Sit tight as grading is currently in progress. While waiting for your grades to be released, do say goodbye in our Goodbye Forum! Would love to read your parting words especially if you won’t be able to join our Zoom-Ender.
-                            <br/>Happy Friday!<br/><br/>
-                            <time datetime="2021-05-29">10:09 AM - 29 May 2021</time>
-                        </p>
-                    </div>
-                </div>
-                <div class="panel-block">
-                    <div class="p-3">
-                        <div class="media">
-                            <div class="media-left mb-5">
-                                <figure class="image is-48x48">
-                                    <img src="https://cataas.com/cat/cute?width=200&height=200" alt="Placeholder image" width="100%">
-                                </figure>
-                            </div>
-                            <div class="media-content">
-                                <p class="title is-4">Ria Mae Borromeo</p>
-                                <p class="subtitle is-6"><i class="fas fa-envelope" aria-hidden="true"></i> rhborromeo@upou.edu.ph</p>
-                            </div>
-                        </div>
-                        <p>
-                            Hello everyone!<br/>
-                            Reminding you all of your deliverables scheduled to be submitted on our last day of classes, May 24. You can do it!<br/>
-                            Will be posting an announcement next week if we will have a Zoom Ender before the submission of grades, just in case.
-                            <br/><br/>
-                            Have a good weekend!<br/><br/>
-                            <time datetime="2021-05-29">8:04 AM - 20 May 2021</time>
-                        </p>
-                    </div>
-                </div>
+                        @endforeach
+                    @endif
+                
             </article>
         </div>
     </div>

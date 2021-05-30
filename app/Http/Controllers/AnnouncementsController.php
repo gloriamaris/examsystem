@@ -23,7 +23,7 @@ class AnnouncementsController extends Controller
      */
     public function index()
     {
-        $announcements = Announcement::where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
+        $announcements = Announcement::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->get();
         $name = Auth::user()->name;
         $email = Auth::user()->email;
 
