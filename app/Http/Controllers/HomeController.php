@@ -40,7 +40,7 @@ class HomeController extends Controller
             ->get();
         $topics = Topic::count();
         $questions = Question::count();
-        $students = User::whereNull('role_id')->count();
+        $students = User::where('role_id', '=', 2)->count();
         $faculty = User::where('role_id', '=', 1)->count();
         $quizzes = Test::count();
         $average = Test::avg('result');

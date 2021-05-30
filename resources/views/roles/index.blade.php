@@ -6,7 +6,7 @@ Roles - UP Online Examination System
 
 @section('content')
 <div class="column">
-    <h3 class="title is-3">roles</h3>
+    <h3 class="title is-3">Roles</h3>
 
     <div class="columns">
         <div class="column">
@@ -28,7 +28,7 @@ Roles - UP Online Examination System
                                     <td style="text-align:center;">{{ ++$count }}</td>
                                     <td>{{ $role->title }}</td>
                                     <td>
-                                        @if ($role->id !== 1)
+                                        @if ($role->id > 2)
                                         <a href="{{ route('roles.edit',[$role->id]) }}" class="button is-small is-link is-outlined">@lang('quickadmin.edit')</a>
                                         
                                         {!! Form::open(array(
