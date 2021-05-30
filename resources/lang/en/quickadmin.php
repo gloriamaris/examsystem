@@ -11,7 +11,7 @@ return [
 	'custom_controller_index' => 'Custom controller index.',
 	'logout' => 'Logout',
 	'add_new' => 'Add new',
-	'are_you_sure' => 'Delete this user? This action cannot be undone.',
+	'are_you_sure' => 'Delete this item? This action cannot be undone.',
 	'back_to_list' => 'Back to list',
 	'dashboard' => 'Dashboard',
 	'delete' => 'Delete',

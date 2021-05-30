@@ -1,12 +1,16 @@
 @extends('layouts.app')
 
+@section('title')
+Roles - UP Online Examination System
+@endsection
+
 @section('content')
 <div class="column">
     <h3 class="title is-3">Users</h3>
 
     <div class="columns">
         <div class="column">
-            <a href="{{ route('users.create') }}" class="button is-info mb-5"><i class="fa fa-plus mr-1"></i>Add new role</a>
+            <a href="{{ route('roles.create') }}" class="button is-info mb-5"><i class="fa fa-plus mr-1"></i>Add new role</a>
             <div class="table-container">
                 <table class="table is-fullwidth {{ count($users) > 0 ? 'tbl' : '' }}">
                     <thead>
@@ -31,7 +35,7 @@
                                             'style' => 'display: inline-block;',
                                             'method' => 'DELETE',
                                             'onsubmit' => "return confirm('".trans("quickadmin.are_you_sure")."');",
-                                            'route' => ['users.destroy', $role->id])) !!}
+                                            'route' => ['roles.destroy', $role->id])) !!}
                                         {!! Form::submit(trans('quickadmin.delete'), array('class' => 'button is-small is-inverted is-danger')) !!}
                                         {!! Form::close() !!}
                                         @endif
