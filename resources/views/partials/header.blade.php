@@ -18,7 +18,7 @@
         </a>
 
         <a class="navbar-item {{ \Route::current()->getName() === 'questions.index' ? 'navbar-link-is-active' : '' }}"
-            href="{{ route('questions.index') }}">
+            href="{{ route('exams.index') }}">
             Exams
         </a>
 

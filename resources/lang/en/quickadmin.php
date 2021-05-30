@@ -19,13 +19,12 @@ return [
 
 	'user-management' => [
 		'title' => 'User Management',
-		'fields' => [
-		],
+		'fields' => [],
 	],
 
-    'test' => [
-        'new' => 'New Quiz',
-    ],
+	'test' => [
+		'new' => 'New Quiz',
+	],
 
 	'roles' => [
 		'title' => 'Roles',
@@ -40,6 +39,17 @@ return [
 			'author' => 'Author',
 			'description' => 'Description',
 			'created_at' => 'Date Posted',
+		],
+	],
+
+	'exams' => [
+		'title' => 'Exams',
+		'fields' => [
+			'name' => 'Name',
+			'course' => 'Course',
+			'status' => 'Status',
+			'schedule' => 'Schedule',
+			'students' => 'Students'
 		],
 	],
 

@@ -61,21 +61,17 @@
                 </div>
                 <div class="field">
                     <label class="label">Role*</label>
-                    <div class="control has-icons-left">
+                    <div class="control">
                         <div class="select is-fullwidth">
                             <select name="role_id">
-                                @foreach ($roles as $role)
-                                    <option value="{{ $role->id }}">{{ $role->title }}</option>
+                                @foreach ($courses as $course)
+                                    <option value="{{ $course->id }}">{{ $course->title }}</option>
                                 @endforeach
                             </select>
                         </div>
-
-                        <span class="icon is-left">
-                            <i class="fas fa-globe"></i>
-                        </span>
                     </div>
-                    @if ($errors->has('password'))
-                        <p class="help is-danger">{{ $errors->first('password') }}</p>
+                    @if ($errors->has('role_id'))
+                        <p class="help is-danger">{{ $errors->first('role_id') }}</p>
                     @endif
                 </div>
                 <div class="field">

@@ -17,8 +17,8 @@ class CreateExamsTable extends Migration
             $table->increments('id');
             $table->text('name');
             $table->enum('status', ['open', 'closed']);
-            $table->dateTime('date_start');
-            $table->dateTime('date_end');
+            $table->date('date_start');
+            $table->date('date_end');
             $table->unsignedInteger('topic_id');
             $table->foreign('topic_id')->references('id')->on('topics');
 
