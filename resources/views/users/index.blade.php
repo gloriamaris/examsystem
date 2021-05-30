@@ -32,6 +32,7 @@ Users - UP Online Examination System
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->role->title or '' }}</td>
                                     <td>
+                                        @if ($user->id !== 1)
                                         <a href="{{ route('users.edit',[$user->id]) }}" class="button is-small is-link is-outlined">@lang('quickadmin.edit')</a>
                                         
                                         {!! Form::open(array(
@@ -41,6 +42,7 @@ Users - UP Online Examination System
                                             'route' => ['users.destroy', $user->id])) !!}
                                         {!! Form::submit(trans('quickadmin.delete'), array('class' => 'button is-small is-inverted is-danger')) !!}
                                         {!! Form::close() !!}
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

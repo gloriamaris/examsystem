@@ -29,6 +29,10 @@ class UserAction extends Model
         $this->attributes['user_id'] = $input ? $input : null;
     }
     
+    public function role() {
+        return $this->hasOne('App\Role');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id')->withTrashed();

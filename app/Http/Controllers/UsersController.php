@@ -22,7 +22,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::where('users.id', '>', 1)->get();
+        $users = User::all();
         return view('users.index', compact('users'));
     }
 
@@ -68,12 +68,11 @@ class UsersController extends Controller
             'roles' => \App\Role::get()->pluck('title', 'id')->prepend('Please select', ''),
         ];
 
-        // $user = User::findOrFail($id);
-        $user = User::where('users.id', $id)
-                ->join('roles', 'roles.id', '=', 'users.role_id')
-                ->get();
+        $user = User::findOrFail($id);
 
-        return view('users.edit', compact('user') + $relations);
+        $roles = Role::all();
+
+        return view('users.edit', compact('relations', 'user', 'roles'));
     }
 
     /**
@@ -84,9 +83,14 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateUsersRequest $request, $id)
-    {
+    { 
         $user = User::findOrFail($id);
         $user->update($request->all());
+
+       /*  echo "<pre>";
+        print_r($user);
+        echo "</pre>";
+        die(); */
 
         return redirect()->route('users.index');
     }
