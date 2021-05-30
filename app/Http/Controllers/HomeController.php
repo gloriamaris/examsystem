@@ -38,6 +38,9 @@ class HomeController extends Controller
             ->select('a.*', 'users.name', 'users.email')
             ->take(3)
             ->get();
+
+        $users = User::orderBy('created_at', 'DESC')->take(5)->get();
+
         $topics = Topic::count();
         $questions = Question::count();
         $students = User::where('role_id', '=', 2)->count();
@@ -45,6 +48,6 @@ class HomeController extends Controller
         $quizzes = Test::count();
         $average = Test::avg('result');
 
-        return view('home', compact('questions', 'students', 'faculty', 'quizzes', 'average', 'topics', 'isAdmin', 'announcements'));
+        return view('home', compact('questions', 'students', 'faculty', 'quizzes', 'average', 'topics', 'isAdmin', 'announcements', 'users'));
     }
 }

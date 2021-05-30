@@ -73,51 +73,18 @@ Dashboard - UP Online Examination System
             </article>
             <article class="panel is-info">
                 <p class="panel-heading">Recently registered</p>
+                @if (count($users) > 0)
+                @foreach ($users as $user)
                 <div class="panel-block p-2">
                     <span class="panel-icon">
                         <i class="fas fa-user" aria-hidden="true"></i>
                     </span>
                     <p>
-                        Jheniel Guardiana<br/>
-                        <a href="#">jhenielguardiana@gmail.com</a>
+                        {{ $user->name }} &middot; <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>
                     </p>
                 </div>
-                <div class="panel-block p-2">
-                    <span class="panel-icon">
-                        <i class="fas fa-user" aria-hidden="true"></i>
-                    </span>
-                    <p>
-                        Shaina Joy Ceniza<br/>
-                        <a href="#">shainaceniza@lamudi.com</a>
-                    </p>
-                </div>
-                <div class="panel-block p-2">
-                    <span class="panel-icon">
-                        <i class="fas fa-user" aria-hidden="true"></i>
-                    </span>
-                    <p>
-                        Eldrin Jay Chit Librea<br/>
-                        <a href="#">ejclibrea@up.edu.ph</a>
-                    </p>
-                </div>
-                <div class="panel-block p-2">
-                    <span class="panel-icon">
-                        <i class="fas fa-user" aria-hidden="true"></i>
-                    </span>
-                    <p>
-                        Justin Rafael Mejos<br/>
-                        <a href="#">justinmejor@up.edu.ph</a>
-                    </p>
-                </div>
-                <div class="panel-block p-2">
-                    <span class="panel-icon">
-                        <i class="fas fa-user" aria-hidden="true"></i>
-                    </span>
-                    <p>
-                        Isaiah Jan Caracol<br/>
-                        <a href="#">isaiahcaracol@wework.ph</a>
-                    </p>
-                </div>
+                @endforeach
+                @endif
                 <div class="panel-block p-2">
                     <a href="{{ route('users.index') }}" class="button is-outlined is-info is-fullwidth">View more</a>
                 </div>
@@ -157,7 +124,6 @@ Dashboard - UP Online Examination System
                             </div>
                         @endforeach
                     @endif
-                
             </article>
         </div>
     </div>
