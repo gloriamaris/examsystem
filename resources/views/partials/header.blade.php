@@ -24,8 +24,8 @@
 
         <div class="navbar-item has-dropdown is-hoverable">
             <?php 
-                $isDropdownItemActive = \Route::current()->getName() === 'users.index' || \Route::current()->getName() === 'roles.index'
-                                        || \Route::current()->getName() === 'users.create' || \Route::current()->getName() === 'roles.create';
+                $validDropdownRoutes = ['users.index', 'roles.index', 'announcements.index', 'users.create', 'roles.create', 'announcements.create', 'users.edit', 'roles.edit', 'announcements.edit'];
+                $isDropdownItemActive = in_array(\Route::current()->getName(), $validDropdownroutes);
                 
                 $isUsersActive = \Route::current()->getName() === 'users.index' || \Route::current()->getName() === 'users.create';
                 $isRolesActive = \Route::current()->getName() === 'roles.index' || \Route::current()->getName() === 'roles.create';
@@ -35,8 +35,8 @@
             </a>
 
             <div class="navbar-dropdown">
-                <a class="navbar-item {{ \Route::current()->getName() === 'users.index' ? 'navbar-link-is-active' : '' }}"
-                    href="{{ route('users.index') }}">
+                <a class="navbar-item {{ \Route::current()->getName() === 'announcements.index' ? 'navbar-link-is-active' : '' }}"
+                    href="{{ route('announcements.index') }}">
                     Announcements
                 </a>
                 <a class="navbar-item {{ $isUsersActive ? 'navbar-link-is-active' : '' }}"
