@@ -6,7 +6,7 @@ Courses - UP Online Examination System
 
 @section('content')
 <div class="column">
-    <h3 class="title is-3">Users</h3>
+    <h3 class="title is-3">Courses</h3>
     
     <div class="columns">
         <div class="column">
