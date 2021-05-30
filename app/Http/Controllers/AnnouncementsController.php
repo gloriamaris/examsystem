@@ -23,7 +23,7 @@ class AnnouncementsController extends Controller
      */
     public function index()
     {
-        $announcements = Announcement::findOrFail(Auth::user()->id)->orderBy('id', 'DESC')->get();
+        $announcements = Announcement::where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
         $name = Auth::user()->name;
         $email = Auth::user()->email;
 
@@ -68,7 +68,7 @@ class AnnouncementsController extends Controller
     {
         $announcement = Announcement::findOrFail($id);
 
-        return view('announcements.edit', compact('Announcement'));
+        return view('announcements.edit', compact('announcement'));
     }
 
     /**
@@ -97,7 +97,7 @@ class AnnouncementsController extends Controller
     {
         $announcement = Announcement::findOrFail($id);
 
-        return view('announcements.show', compact('Announcement'));
+        return view('announcements.show', compact('announcement'));
     }
 
 

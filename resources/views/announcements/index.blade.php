@@ -9,7 +9,6 @@
     <div class="column">
         <h3 class="title is-3">Announcements</h3>
         <div class="columns">
-            <div class="column"></div>
             <div class="column is-three-fifths">
                 <a href="{{ route('announcements.create') }}" class="button is-info mb-5"><i
                         class="fa fa-plus mr-1"></i>Post new</a>
@@ -60,6 +59,7 @@
                     @endif
                 </article>
             </div>
+            <div class="column"></div>
             <div class="column"></div>
         </div>
     </div>
