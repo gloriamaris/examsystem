@@ -2,7 +2,7 @@
 
 
 @section('title')
-topics - UP Online Examination System
+Create topic - UP Online Examination System
 @endsection
 
 @section('content')
