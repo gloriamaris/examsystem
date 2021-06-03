@@ -14,8 +14,7 @@ class UpdateQuestionsTable extends Migration
     public function up()
     {
         Schema::table('questions', function (Blueprint $table) {
-            $table->unsignedInteger('exam_id');
-            $table->foreign('exam_id')->references('id')->on('exams');
+            $table->unsignedInteger('exam_id')->references('id')->on('exams');
         });
     }
 

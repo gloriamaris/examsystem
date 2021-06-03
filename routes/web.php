@@ -36,8 +36,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('announcements', 'AnnouncementsController');
     Route::resource('exams', 'ExamsController');
     Route::resource('examquestions', 'ExamsQuestionsController');
+    Route::resource('courses', 'TopicsUsersController');
     Route::post('announcements_mass_destroy', ['uses' => 'AnnouncementsController@massDestroy', 'as' => 'announcements.mass_destroy']);
     Route::resource('tests', 'TestsController');
+    Route::resource('scores', 'ScoresController');
     Route::resource('roles', 'RolesController');
     Route::post('roles_mass_destroy', ['uses' => 'RolesController@massDestroy', 'as' => 'roles.mass_destroy']);
     Route::resource('users', 'UsersController');

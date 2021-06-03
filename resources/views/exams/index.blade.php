@@ -20,7 +20,6 @@ Exams - UP Online Examination System
                             <th>@lang('quickadmin.exams.fields.name')</th>
                             <th>@lang('quickadmin.exams.fields.schedule')</th>
                             <th>@lang('quickadmin.exams.fields.status')</th>
-                            <th>@lang('quickadmin.exams.fields.students')</th>
                             <th>&nbsp;</th>
                         </tr>
                     </thead>
@@ -34,7 +33,6 @@ Exams - UP Online Examination System
                                     <td>{{ $exam->name }}</td>
                                     <td>{{ date('j F, Y', strtotime($exam->date_start)) }} - {{ date('j F, Y', strtotime($exam->date_end)) }}</td>
                                     <td><span class="tag {{ $exam->status == "open" ? "is-primary" : "" }} is-light">{{ $exam->status }}</span></td>
-                                    <td>TODO</td>
                                     <td>
                                         <a href="{{ route('exams.show', $exam->id) }}" class="button is-small is-link is-outlined">Manage</a>
                                         <a href="{{ route('exams.edit',[$exam->id]) }}" class="button is-small is-link is-outlined">@lang('quickadmin.edit')</a>
