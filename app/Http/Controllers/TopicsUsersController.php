@@ -92,9 +92,10 @@ class TopicsUsersController extends Controller
                     }
                 }
             }
+
+            $students = $newStudents;
         }
 
-        $students = $newStudents;
 
         $semesters = [
             'AY ' . date('Y') . ' - ' . date('Y', strtotime('+1 year')) . ', 1st Semester',
