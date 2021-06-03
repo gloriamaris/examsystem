@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exam;
 use App\Test;
 use App\TestAnswer;
 use Illuminate\Http\Request;
@@ -41,14 +42,20 @@ class ResultsController extends Controller
     public function show($id)
     {
         $test = Test::find($id)->load('user');
+        $exam = Exam::where('exams.id', '=', $test->exam_id)
+            ->join('topics', 'exams.topic_id', '=', 'topics.id')
+            ->select('exams.*', 'topics.title')
+            ->first();
 
         if ($test) {
             $results = TestAnswer::where('test_id', $id)
                 ->with('question')
                 ->with('question.options')
                 ->get();
+
+            $totalItems = count($results);
         }
 
-        return view('results.show', compact('test', 'results'));
+        return view('results.show', compact('test', 'results', 'totalItems', 'exam'));
     }
 }

@@ -72,6 +72,7 @@ class TestsController extends Controller
 
         $test = Test::create([
             'user_id' => Auth::id(),
+            'exam_id' => $request->exam_id,
             'result'  => $result,
         ]);
 

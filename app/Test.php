@@ -1,4 +1,5 @@
 <?php
+
 namespace App;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -9,12 +10,12 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App
  * @property string $title
-*/
+ */
 class Test extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['user_id', 'result'];
+    protected $fillable = ['user_id', 'result', 'exam_id'];
 
     public static function boot()
     {

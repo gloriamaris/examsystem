@@ -31,6 +31,7 @@ Take Exam - UP Online Examination System
                 <p class="panel-heading">
                     Question #{{ ++$count }}
                 </p>
+                <input type="hidden" name="exam_id" value="{{ $exam->id }}" />
                 <input type="hidden" name="questions[{{ $count }}]" value="{{ $q->id }}" />
                 <div class="panel-block pt-5 pb-5">
                     <p class="control has-text-weight-medium">
@@ -91,8 +92,8 @@ Take Exam - UP Online Examination System
         
         if (minutes < 0) clearInterval(interval);
         
-        seconds = (seconds < 0) ? 59 : seconds;
-        seconds = (seconds < 10) ? '0' + seconds : seconds;
+        seconds = (seconds <= 0) ? 59 : seconds;
+        seconds = (seconds <= 10) ? '0' + seconds : seconds;
         
         //minutes = (minutes < 10) ?  minutes : minutes;
         $('#timer').html('00:' + minutes + ':' + seconds);

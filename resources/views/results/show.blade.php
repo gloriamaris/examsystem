@@ -6,8 +6,34 @@ View Results - UP Online Examination System
 
 @section('content')
 <div class="column">
-    <h3 class="title is-3">Dashboard</h3>
+    <h3 class="title is-3">View Results</h3>
 
+    <div class="columns">
+        <div class="column is-two-thirds">
+            <div class="table-container">
+                <table class="table is-fullwidth">
+                    @if(!Auth::user()->isAdmin())
+                    <tr>
+                        <th>Name</th>
+                        <td>{{ $test->user->name or '' }} ({{ $test->user->email or '' }})</td>
+                    </tr>
+                    @endif
+                    <tr>
+                        <th>Course</th>
+                        <td>{{ $exam->title }} - {{ $exam->name }}</td>
+                    </tr>
+                    <tr>
+                        <th>@lang('quickadmin.results.fields.date')</th>
+                        <td>{{ $test->created_at or '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>@lang('quickadmin.results.fields.result')</th>
+                        <td>{{ $test->result }}/{{ $totalItems }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
     <div class="columns">
         <div class="column">
             <div class="column is-two-thirds">
@@ -34,15 +60,17 @@ View Results - UP Online Examination System
                         <ul>
                         @foreach($result->question->options as $option)
                             @if ($option->correct == 1)
-                            <li class="has-text-weight-bold has-text-success">
+                            <li class="has-text-weight-bold">
                                 {{ $option->option }} 
-                                {{ $result->option_id == $option->id ? "(your answer)" : "" }}
-                                (correct answer)
+                                @if ($result->option_id == $option->id )
+                                    <span class="has-text-success">(your answer)</span>
+                                @endif
+                                <span class="has-text-success"><i class="fa fa-check"></i></span>
                             </li>
                             @elseif ($option->correct !== 1 && $result->option_id == $option->id)
                             <li class="has-text-weight-bold">
                                 {{ $option->option }} 
-                                (your answer)
+                                <span class="has-text-danger"><i class="fa fa-times-circle"></i></span>
                             </li>
                             @else
                             <li>
