@@ -17,7 +17,7 @@ Manage Exam - UP Online Examination System
             <div class="tabs">
                 <ul>
                     <li class="is-active"><a>Questions</a></li>
-                    <li><a>Scores</a></li>
+                    <li><a href="{{ route('scores.show', $exam->id) }}">Scores</a></li>
                 </ul>
             </div>
         </div>

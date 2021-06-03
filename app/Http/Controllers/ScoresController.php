@@ -2,123 +2,87 @@
 
 namespace App\Http\Controllers;
 
-use App\Role;
+use App\Exam;
+use App\Test;
+use App\TestAnswer;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreRolesRequest;
-use App\Http\Requests\UpdateRolesRequest;
+use App\Http\Requests\StoreResultsRequest;
+use App\Http\Requests\UpdateResultsRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
-class RolesController extends Controller
+class ScoresController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin');
+        $this->middleware('admin')->except('index', 'show');
     }
+
     /**
-     * Display a listing of  Score.
+     * Display a listing of Result.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $roles = Role::all();
+        $results = Test::all()->load('user');
 
-        return view('roles.index', compact('roles'));
+        if (!Auth::user()->isAdmin()) {
+            $results = $results->where('user_id', '=', Auth::id());
+        }
+
+        return view('results.index', compact('results'));
     }
 
     /**
-     * Show the form for creating new  Score.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('roles.create');
-    }
-
-    /**
-     * Store a newly created Score in storage.
-     *
-     * @param  \App\Http\Requests\StoreRolesRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreRolesRequest $request)
-    {
-        Role::create($request->all());
-
-        return redirect()->route('roles.index');
-    }
-
-
-    /**
-     * Show the form for editing  Score.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $role = Role::findOrFail($id);
-
-        return view('roles.edit', compact('role'));
-    }
-
-    /**
-     * Update Score in storage.
-     *
-     * @param  \App\Http\Requests\UpdateRolesRequest  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateRolesRequest $request, $id)
-    {
-        $role = Role::findOrFail($id);
-        $role->update($request->all());
-
-        return redirect()->route('roles.index');
-    }
-
-
-    /**
-     * Display  Score.
+     * Display Result.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $role = Role::findOrFail($id);
+        /* $test = Test::find($id)->load('user');
+        $exam = Exam::where('exams.id', '=', $test->exam_id)
+            ->join('topics', 'exams.topic_id', '=', 'topics.id')
+            ->select('exams.*', 'topics.title')
+            ->first();
 
-        return view('roles.show', compact('role'));
-    }
+        if ($test) {
+            $results = TestAnswer::where('test_id', $id)
+                ->with('question')
+                ->with('question.options')
+                ->get();
 
-
-    /**
-     * Remove Score from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $role = Role::findOrFail($id);
-        $role->delete();
-
-        return redirect()->route('roles.index');
-    }
-
-    /**
-     * Delete all selected Score at once.
-     *
-     * @param Request $request
-     */
-    public function massDestroy(Request $request)
-    {
-        if ($request->input('ids')) {
-            $entries = Role::whereIn('id', $request->input('ids'))->get();
-
-            foreach ($entries as $entry) {
-                $entry->delete();
-            }
+            $totalItems = count($results);
         }
+
+        return view('results.show', compact('test', 'results', 'totalItems', 'exam')); */
+        $tests = Test::where('tests.exam_id', $id)
+            ->join('users as u', 'u.id', '=', 'tests.user_id')
+            ->select('tests.*', 'u.name')
+            ->get();
+
+        $exam = Exam::where('exams.id', '=', $id)
+            ->join('topics', 'exams.topic_id', '=', 'topics.id')
+            ->select('exams.*', 'topics.title')
+            ->first();
+
+        $results = [];
+
+        if ($tests) {
+            foreach ($tests as $test) {
+                $results = TestAnswer::where('test_id', $test->id)
+                    ->with('question')
+                    ->with('question.options')
+                    ->count();
+
+                $test->totalItems = $results;
+            }
+
+            $totalItems = count($results);
+        }
+
+        return view('scores.show', compact('tests', 'exam', 'results'));
     }
 }

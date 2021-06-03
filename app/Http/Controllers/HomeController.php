@@ -51,7 +51,10 @@ class HomeController extends Controller
         $testsArr = [];
 
         foreach ($exams as $e) {
-            $test = Test::where('exam_id', '=', $e->id)->get();
+            $test = Test::where([
+                ['exam_id', '=', $e->id],
+                ['user_id', '=', Auth::user()->id]
+            ])->get();
 
             $e->test_id = count($test) > 0 ?? $test->id;
         }
