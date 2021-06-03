@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exam;
 use App\Http\Requests\StoreExamsQuestionsRequest;
+use App\Http\Requests\UpdateExamsQuestionsRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateExamsRequest;
 use App\Question;
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\DB;
 class ExamsQuestionsController extends Controller
 {
     protected $statuses = ['open', 'closed'];
+    protected $options = [1, 2, 3, 4, 5];
 
     public function __construct()
     {
@@ -85,26 +87,45 @@ class ExamsQuestionsController extends Controller
      */
     public function edit($id)
     {
-        $exam = Exam::findOrFail($id);
-        $courses = Topic::all();
-        $statuses = $this->statuses;
 
-        return view('exams.edit', compact('exam', 'courses', 'statuses'));
+        $question = Question::findOrFail($id);
+        $questionsOption = QuestionsOption::where('question_id', $question->id)->get();
+        $topic = Topic::findOrFail($question->topic_id);
+        $statuses = $this->statuses;
+        $options = $this->options;
+
+        return view('exams_questions.edit', compact('exam', 'courses', 'statuses', 'topic', 'question', 'questionsOption', 'options'));
     }
 
     /**
      * Update Exam in storage.
      *
-     * @param  \App\Http\Requests\UpdateExamsRequest  $request
+     * @param  \App\Http\Requests\UpdateExamsQuestionsRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateExamsRequest $request, $id)
+    public function update(UpdateExamsQuestionsRequest $request, $id)
     {
-        $exam = Exam::findOrFail($id);
-        $exam->update($request->all());
 
-        return redirect()->route('exams.index');
+        $question = Question::findOrFail($id);
+        $question->update($request->all());
+
+        $questionsOption = QuestionsOption::where('question_id', $question->id)->get();
+        $count = 0;
+
+        foreach ($questionsOption as $qo) {
+            $inputName = 'option' . ++$count;
+
+            $data = [
+                'question_id' => $question->id,
+                'option'      => $request->input($inputName),
+                'correct'     => $inputName == $request->input('correct') ? 1 : 0
+            ];
+
+            QuestionsOption::where('id', $qo->id)->update($data);
+        }
+
+        return redirect()->route('exams.show', $question->exam_id);
     }
 
 
@@ -118,7 +139,7 @@ class ExamsQuestionsController extends Controller
     {
         $exam = Exam::findOrFail($id);
         $topic = Topic::findOrFail($exam->topic_id);
-        $options = [1, 2, 3, 4, 5];
+        $options = $this->options;
 
         return view('exams_questions.create', compact('topic', 'exam', 'options'));
     }

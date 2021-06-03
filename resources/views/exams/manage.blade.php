@@ -55,7 +55,7 @@ Manage Exam - UP Online Examination System
                                     </td>
                                     <td><small>{{ $question->answer_explanation }}</small></td>
                                     <td width="15%">
-                                        <a href="{{ route('questions.edit',[$question->id]) }}" class="button is-small is-link is-outlined">@lang('quickadmin.edit')</a>
+                                        <a href="{{ route('examquestions.edit',[$question->id]) }}" class="button is-small is-link is-outlined">@lang('quickadmin.edit')</a>
                                         
                                         {!! Form::open(array(
                                             'style' => 'display: inline-block;',
