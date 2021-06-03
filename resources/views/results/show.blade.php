@@ -1,81 +1,77 @@
 @extends('layouts.app')
 
+@section('title')
+View Results - UP Online Examination System
+@endsection
+
 @section('content')
-    <h3 class="page-title">@lang('quickadmin.results.title')</h3>
+<div class="column">
+    <h3 class="title is-3">Dashboard</h3>
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            @lang('quickadmin.view-result')
-        </div>
+    <div class="columns">
+        <div class="column">
+            <div class="column is-two-thirds">
+                <?php $count = 0; ?>
+                @foreach ($results as $result)
+                <article class="panel is-link">
+                    <p class="panel-heading">Question #{{ ++$count }}</p>
+                    <input type="hidden" name="questions[{{ $count }}]" value="{{ $q->id }}" />
+                    <div class="panel-block pt-3 pb-5">
+                        <p class="control has-text-weight-medium">
+                            {{ nl2br($result->question->question_text) }}
+                        </p>
+                    </div>
 
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-md-12">
-                    <table class="table table-bordered table-striped">
-                        @if(Auth::user()->isAdmin())
-                        <tr>
-                            <th>@lang('quickadmin.results.fields.user')</th>
-                            <td>{{ $test->user->name or '' }} ({{ $test->user->email or '' }})</td>
-                        </tr>
-                        @endif
-                        <tr>
-                            <th>@lang('quickadmin.results.fields.date')</th>
-                            <td>{{ $test->created_at or '' }}</td>
-                        </tr>
-                        <tr>
-                            <th>@lang('quickadmin.results.fields.result')</th>
-                            <td>{{ $test->result }}/10</td>
-                        </tr>
-                    </table>
-                <?php $i = 1 ?>
-                @foreach($results as $result)
-                    <table class="table table-bordered table-striped">
-                        <tr class="test-option{{ $result->correct ? '-true' : '-false' }}">
-                            <th style="width: 10%">Question #{{ $i }}</th>
-                            <th>{{ $result->question->question_text or '' }}</th>
-                        </tr>
-                        @if ($result->question->code_snippet != '')
-                            <tr>
-                                <td>Code snippet</td>
-                                <td><div class="code_snippet">{!! $result->question->code_snippet !!}</div></td>
-                            </tr>
-                        @endif
-                        <tr>
-                            <td>Options</td>
-                            <td>
-                                <ul>
-                                @foreach($result->question->options as $option)
-                                    <li style="@if ($option->correct == 1) font-weight: bold; @endif
-                                        @if ($result->option_id == $option->id) text-decoration: underline @endif">{{ $option->option }}
-                                        @if ($option->correct == 1) <em>(correct answer)</em> @endif
-                                        @if ($result->option_id == $option->id) <em>(your answer)</em> @endif
-                                    </li>
-                                @endforeach
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Answer Explanation</td>
-                            <td>
+                    @if ($q->question->code_snippet != '')
+                    <div class="panel-block pt-3">
+                        <p class="control">
+                            {{ nl2br($result->code_snippet) }}
+                        </p>
+                    </div>
+                    @endif
+
+                    <div class="panel-block content">
+                        <ul>
+                        @foreach($result->question->options as $option)
+                            @if ($option->correct == 1)
+                            <li class="has-text-weight-bold has-text-success">
+                                {{ $option->option }} 
+                                {{ $result->option_id == $option->id ? "(your answer)" : "" }}
+                                (correct answer)
+                            </li>
+                            @elseif ($option->correct !== 1 && $result->option_id == $option->id)
+                            <li class="has-text-weight-bold">
+                                {{ $option->option }} 
+                                (your answer)
+                            </li>
+                            @else
+                            <li>
+                                {{ $option->option }}
+                            </li>
+                            @endif
+                        @endforeach
+                        </ul>
+                    </div>
+                    <div class="panel-block">
+                        <p class="control">
+                            <strong>Answer Explanation</strong><br/>
                             {!! $result->question->answer_explanation  !!}
-                                @if ($result->question->more_info_link != '')
-                                    <br>
-                                    <br>
-                                    Read more:
-                                    <a href="{{ $result->question->more_info_link }}" target="_blank">{{ $result->question->more_info_link }}</a>
-                                @endif
-                            </td>
-                        </tr>
-                    </table>
-                <?php $i++ ?>
+                        </p>
+                    </div>
+                    <div class="panel-block">
+                        <p class="control">
+                            Read more: <a href="{{ $result->question->more_info_link }}" target="_blank">{{ $result->question->more_info_link }}</a>
+                        </p>
+                    </div>
+                </article>
                 @endforeach
+                <div class="field">
+                    <a href="{{ route('home') }}" class="button is-primary">Go back to home</a>
                 </div>
             </div>
-
-            <p>&nbsp;</p>
-
-            <a href="{{ route('tests.index') }}" class="btn btn-default">Take another quiz</a>
-            <a href="{{ route('results.index') }}" class="btn btn-default">See all my results</a>
+            <div class="column"></div>
         </div>
     </div>
+</div>
+   
 @stop

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
 use App\Test;
 use App\TestAnswer;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreResultsRequest;
 use App\Http\Requests\UpdateResultsRequest;
+use Illuminate\Support\Facades\Auth;
 
 class ResultsController extends Controller
 {
@@ -46,8 +46,7 @@ class ResultsController extends Controller
             $results = TestAnswer::where('test_id', $id)
                 ->with('question')
                 ->with('question.options')
-                ->get()
-            ;
+                ->get();
         }
 
         return view('results.show', compact('test', 'results'));

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Create Exam - UP Online Examination System
+Take Exam - UP Online Examination System
 @endsection
 
 @section('content')
@@ -53,8 +53,8 @@ Create Exam - UP Online Examination System
                                 {{ $o->option }}
                             </small>
                         </label>
-                        </p>
-                    </a>
+                    </p>
+                </a>
                 @endforeach
             </article>
             @endforeach
