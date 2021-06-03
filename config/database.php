@@ -4,7 +4,8 @@ $url = parse_url(getenv('CLEARDB_DATABASE_URL'));
 $host = $url['host'] ?? null;
 $username = $url['user'] ?? null;
 $password = $url['pass'] ?? null;
-$database = substr($url['path'], 1);
+// $database = substr($url['path'], 1);
+$database = 'heroku_797dd26ba4587b1';
 
 return [
 
