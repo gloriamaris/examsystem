@@ -10,19 +10,25 @@ Dashboard - UP Online Examination System
 
     <div class="columns mt-5">
         <div class="column is-two-thirds">
-            <article class="panel is-primary">
-                <p class="panel-heading">Open exams</p>
-                @if (count($exams) > 0)
-                @foreach ($exams as $exam)
-                <div class="panel-block">
-                    <a href="{{ route('tests.show', $exam->id) }}" class="panel-block">
-                        <span class="panel-icon">
-                            <i class="fas fa-book" aria-hidden="true"></i>
-                        </span>
-                        {{ $exam->name }} - {{ $exam->title }}
-                    </a>
-                </div>
-                @endforeach
+            <article class="panel is-info">
+                <p class="panel-heading">Open Examinations</p>
+                @if (count($exams > 0))
+                    @foreach ($exams as $exam)
+                        <div class="panel-block">
+                            <div class="p-3">
+                                <p>
+                                    <h6 class="has-text-weight-semibold is-size-6">{{ $exam->name }} <br/> {{ $exam->title }}</h6>
+                                    Schedule: <time datetime={{ $exam->created_at }}>{{ date('j F Y', strtotime($exam->date_start)) }} &middot; {{ date('j F Y', strtotime($exam->date_end)) }}
+                                    </time>
+                                </p>
+                            </div>
+                            <div class="p-3">
+                            </div>
+                        </div>
+                        <div class="panel-block is-justify-content-end">
+                            <a href="{{ route('tests.show', $exam->id) }}" class="button is-info"> Take Exam</a>
+                        </div>
+                    @endforeach
                 @endif
             </article>
         </div>

@@ -18,7 +18,7 @@
       integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
       crossorigin="anonymous"/>
 <link rel="stylesheet"
-      href="{{ url('quickadmin/bulma/css') }}/bulma.min.css"/>
+href="{{ url('quickadmin/bulma/css') }}/bulma.min.css"/>
 <link rel="stylesheet"
       href="{{ url('quickadmin/bulma/css') }}/custom.css"/>
 

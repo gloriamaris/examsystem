@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Exam;
-use DB;
-use Auth;
 use App\Test;
 use App\TestAnswer;
 use App\Topic;
@@ -12,6 +10,8 @@ use App\Question;
 use App\QuestionsOption;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreTestRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class TestsController extends Controller
 {
@@ -50,14 +50,14 @@ class TestsController extends Controller
      */
     public function show($examId)
     {
-        $questions = DB::table('questions as q')
-            ->join('questions_options as qo', 'qo.question_id', '=', 'q.id')
-            // ->where('q.exam_id', $examId)
-            ->get();
+        $exam = Exam::findOrFail($examId);
+        $questions = Question::where('exam_id', $examId)->get();
 
-        echo "<pre>";
-        print_r($questions);
-        die();
+        foreach ($questions as &$question) {
+            $question->options = QuestionsOption::where('question_id', $question->id)->inRandomOrder()->get();
+        }
+
+        return view('tests.take_exam', compact('exam', 'questions'));
     }
 
     /**

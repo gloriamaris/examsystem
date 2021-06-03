@@ -1,3 +1,7 @@
+#timer-section {
+  position: fixed !important;
+}
+
 .page-container {
   background-color: #fafafa;
 }
@@ -18,7 +22,7 @@
 
 .navbar-link-is-active {
   background-color: #fafafa;
-  color: #8B303A !important;
+  color: #8b303a !important;
   font-weight: bold;
 }
 
