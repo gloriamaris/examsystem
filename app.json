@@ -1,0 +1,12 @@
+{
+    "name": "IS226 Exam System",
+    "description": "",
+    "scripts": {
+        "postdeploy": "php artisan optimize"
+    },
+    "buildpacks": [
+        {
+            "url": "https://github.com/heroku/heroku-buildpack-php"
+        }
+    ]
+}
