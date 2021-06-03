@@ -55,11 +55,7 @@ Exams - UP Online Examination System
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="6">Displaying {{ count($exams) }} item(s)</td>
-                            <td colspan="1">
-                                <a href="#" class="button is-inverted is-small is-info" disabled>Prev</a>
-                                <a href="#" class="button is-inverted is-small is-info">Next</a>
-                            </td>
+                            <td colspan="7">Displaying {{ count($exams) }} item(s)</td>
                         </tr>
                     </tfoot>
                 </table>

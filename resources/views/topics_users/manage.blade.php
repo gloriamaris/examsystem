@@ -63,11 +63,7 @@ Course - UP Online Examination System
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="4">Displaying {{ count($topics) }} item(s)</td>
-                            <td colspan="1">
-                                <a href="#" class="button is-inverted is-small is-info" disabled>Prev</a>
-                                <a href="#" class="button is-inverted is-small is-info">Next</a>
-                            </td>
+                            <td colspan="5">Displaying {{ count($topics) }} item(s)</td>
                         </tr>
                     </tfoot>
                 </table>

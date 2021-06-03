@@ -48,6 +48,14 @@ class HomeController extends Controller
             ->distinct()
             ->get();
 
+        $testsArr = [];
+
+        foreach ($exams as $e) {
+            $test = Test::where('exam_id', '=', $e->id)->get();
+
+            $e->test_id = count($test) > 0 ?? $test->id;
+        }
+
         return view('home_student', compact('announcements', 'exams'));
     }
     /**

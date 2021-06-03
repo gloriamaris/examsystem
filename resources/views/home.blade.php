@@ -9,36 +9,6 @@ Dashboard - UP Online Examination System
     <h3 class="title is-3">Dashboard</h3>
 
     @if ($isAdmin == 1)
-    <div class="columns">
-        <div class="column">
-            <nav class="level">
-                <div class="level-item has-text-centered">
-                    <div>
-                    <p class="heading">Courses</p>
-                    <p class="title">{{ $topics }}</p>
-                    </div>
-                </div>
-                <div class="level-item has-text-centered">
-                    <div>
-                    <p class="heading">Exams</p>
-                    <p class="title">{{ $quizzes }}</p>
-                    </div>
-                </div>
-                <div class="level-item has-text-centered">
-                    <div>
-                    <p class="heading">Faculty</p>
-                    <p class="title">{{ $faculty }}</p>
-                    </div>
-                </div>
-                <div class="level-item has-text-centered">
-                    <div>
-                    <p class="heading">Students</p>
-                    <p class="title">{{ $students }}</p>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </div>
     <div class="columns mt-5">
         <div class="column is-two-thirds">
             <article class="panel is-primary">
