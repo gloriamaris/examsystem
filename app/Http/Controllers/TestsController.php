@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exam;
 use DB;
 use Auth;
 use App\Test;
@@ -47,6 +48,24 @@ class TestsController extends Controller
      * @param  \App\Http\Requests\StoreResultsRequest  $request
      * @return \Illuminate\Http\Response
      */
+    public function show($examId)
+    {
+        $questions = DB::table('questions as q')
+            ->join('questions_options as qo', 'qo.question_id', '=', 'q.id')
+            // ->where('q.exam_id', $examId)
+            ->get();
+
+        echo "<pre>";
+        print_r($questions);
+        die();
+    }
+
+    /**
+     * Store a newly solved Test in storage with results.
+     *
+     * @param  \App\Http\Requests\StoreResultsRequest  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         $result = 0;
@@ -59,8 +78,9 @@ class TestsController extends Controller
         foreach ($request->input('questions', []) as $key => $question) {
             $status = 0;
 
-            if ($request->input('answers.'.$question) != null
-                && QuestionsOption::find($request->input('answers.'.$question))->correct
+            if (
+                $request->input('answers.' . $question) != null
+                && QuestionsOption::find($request->input('answers.' . $question))->correct
             ) {
                 $status = 1;
                 $result++;
@@ -69,7 +89,7 @@ class TestsController extends Controller
                 'user_id'     => Auth::id(),
                 'test_id'     => $test->id,
                 'question_id' => $question,
-                'option_id'   => $request->input('answers.'.$question),
+                'option_id'   => $request->input('answers.' . $question),
                 'correct'     => $status,
             ]);
         }

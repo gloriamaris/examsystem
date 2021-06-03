@@ -102,7 +102,7 @@ class ExamsController extends Controller
     public function show($id)
     {
         $exam = Exam::findOrFail($id);
-        $questions = Question::where('topic_id', $exam->topic_id)->get();
+        $questions = Question::where('exam_id', $id)->get();
         $options = [];
         $count = 0;
 

@@ -17,7 +17,12 @@
             href="{{ route('home') }}">
             Home
         </a>
-
+        @if (\Auth::user()->role_id !== 1)
+        <a class="navbar-item {{ strpos(\Route::current()->getName(), "topics") !== false ? 'navbar-link-is-active' : '' }}"
+            href="{{ route('topics.index') }}">
+            Scores
+        </a>
+        @else
         <a class="navbar-item {{ strpos(\Route::current()->getName(), "topics") !== false ? 'navbar-link-is-active' : '' }}"
             href="{{ route('topics.index') }}">
             Courses
@@ -48,19 +53,28 @@
                 </a>
             </div>
         </div>
+        @endif
         </div>
 
         <div class="navbar-end">
+            @if (\Auth::user()->role_id !== 1)
             <div class="navbar-item">
-                <div class="buttons">
-                <a class="button is-primary" href="{{ route('tests.index') }}">
-                    <strong>Create exam</strong>
-                </a>
                 {!! Form::open(['route' => 'auth.logout', 'id' => 'logout']) !!}
                     <button type="submit" class="button is-dark is-inverted">Log out</button>
                 {!! Form::close() !!}
+            </div>
+            @else
+            <div class="navbar-item">
+                <div class="buttons">
+                    <a class="button is-primary" href="{{ route('tests.index') }}">
+                        <strong>Create exam</strong>
+                    </a>
+                    {!! Form::open(['route' => 'auth.logout', 'id' => 'logout']) !!}
+                    <button type="submit" class="button is-dark is-inverted">Log out</button>
+                    {!! Form::close() !!}
                 </div>
             </div>
+            @endif
         </div>
     </div>
 </nav>
