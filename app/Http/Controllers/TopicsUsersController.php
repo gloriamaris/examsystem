@@ -77,34 +77,24 @@ class TopicsUsersController extends Controller
         $enrolledStudents = TopicsUser::where('topic_id', '=', $topicId)->get();
 
         $students = [];
-        $count = 0;
+        $count = -1;
 
-        if (count($enrolledStudents) == 0) {
-            $students = User::where('role_id', '>', 1)->get();
-        } else {
-            $students = DB::table('topics_users as tu')
-                ->leftJoin('users', 'users.id', '=', 'tu.user_id')
-                ->where('users.role_id', '>', 1)
-                ->where('tu.topic_id', '!=', $topicId)
-                ->get();
-        }
+        $students = User::where('role_id', '>', 1)->get();
+        $newStudents = [];
 
-        $enrolled = [];
         if (count($enrolledStudents) > 0) {
-            foreach ($enrolledStudents as $e) {
-                array_push($enrolled, $e->user_id);
-            }
-
-            $newStudents = [];
             foreach ($students as $student) {
-                if (!in_array($student->user_id, $enrolled)) {
-                    array_push($newStudents, $student);
+                array_push($newStudents, $student);
+
+                foreach ($enrolledStudents as $enrolled) {
+                    if ($student->id == $enrolled->user_id) {
+                        array_pop($newStudents);
+                    }
                 }
             }
-
-            $students = $newStudents;
         }
 
+        $students = $newStudents;
 
         $semesters = [
             'AY ' . date('Y') . ' - ' . date('Y', strtotime('+1 year')) . ', 1st Semester',
