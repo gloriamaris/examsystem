@@ -19,7 +19,7 @@ Take Exam - UP Online Examination System
         <div class="column is-two-thirds">
             <article class="message is-warning">
                 <div class="message-body">
-                    You will be given one 10 minutes to answer the exam questions. Do not attempt to share the exam questions to your classmates. In the event that they will get a grade higher than yours - it is not my fault.
+                    You will be given 10 minutes to answer the exam questions. Do not attempt to share the exam questions to your classmates. In the event that they will get a grade higher than yours - it is not my fault.
                     <br/><br/>Good luck!
                 </div>
             </article>
