@@ -50,7 +50,8 @@ class HomeController extends Controller
 
         foreach ($exams as $e) {
             $test = Test::where([
-                ['exam_id', '=', $e->id]
+                ['exam_id', '=', $e->id],
+                ['user_id', '=', Auth::user()->id]
             ])->first();
 
             if (count($test) > 0) {
