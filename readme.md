@@ -1,19 +1,16 @@
-# LaraQuiz: Laravel 5.3 based quiz system
+# Exam System
 
-It is a demo project for demonstrating what can be generated with [QuickAdminPanel](https://quickadminpanel.com) tool.
-LaraQuiz was mostly generated with __QuickAdmin__ except for some custom code.
+A final deliverable for IS226 Web Information Systems.
 
-It's an open-source version of online Laravel quiz at [LaraQuiz.com](http://laraquiz.com) - but the system can be used for any quiz project, you just fill in different topics and questions.
-
-![LaraQuiz screenshot](http://webcoderpro.com/laraquiz-demo1.png)
-
-![LaraQuiz screenshot 2](http://webcoderpro.com/laraquiz-demo2.png)
+Built on top of Laravel Quiz which is generated from Quick Admin Panel tool, but the UI is fully redesigned and the backend customized as needed.
+The app is hosted at [http://examsystemis1226.herokuapp.com](http://examsystemis1226.herokuapp.com).
 
 ## How to use
 
 #### Using Docker
 - Clone the repository with __git clone__
 - Run __make setup__
+- Run __docker-compose run --rm app php artisan db:seed__ to add initial data.
 - Access via __http://localhost:8888__
 
 #### Without Docker
@@ -28,5 +25,6 @@ It's an open-source version of online Laravel quiz at [LaraQuiz.com](http://lara
 - That's it - allow people to register and take quizzes!
 
 ## License
-
 Basically, feel free to use and re-use any way you want.
+
+
