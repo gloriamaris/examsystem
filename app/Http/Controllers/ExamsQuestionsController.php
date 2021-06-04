@@ -106,9 +106,6 @@ class ExamsQuestionsController extends Controller
      */
     public function update(UpdateExamsQuestionsRequest $request, $id)
     {
-        echo "<pre>";
-        print_r($request->all());
-        die();
         $question = Question::findOrFail($id);
         $question->update($request->all());
 
