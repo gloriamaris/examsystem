@@ -85,10 +85,6 @@ class HomeController extends Controller
             ->orderBy('created_at', 'DESC')
             ->get();
 
-        echo "<pre>";
-        print_r($announcements);
-        die();
-
         $users = User::orderBy('created_at', 'DESC')->take(5)->get();
 
         $exams = DB::table('exams as e')
