@@ -83,14 +83,9 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateUsersRequest $request, $id)
-    { 
+    {
         $user = User::findOrFail($id);
         $user->update($request->all());
-
-       /*  echo "<pre>";
-        print_r($user);
-        echo "</pre>";
-        die(); */
 
         return redirect()->route('users.index');
     }
@@ -143,5 +138,4 @@ class UsersController extends Controller
             }
         }
     }
-
 }
