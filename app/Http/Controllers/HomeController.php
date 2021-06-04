@@ -33,6 +33,7 @@ class HomeController extends Controller
         $announcements = DB::table('announcements as a')
             ->join('users', 'a.user_id', '=', 'users.id')
             ->select('a.*', 'users.name', 'users.email')
+            ->whereNull('e.deleted_at')
             ->take(3)
             ->orderBy('created_at', 'DESC')
             ->get();
@@ -79,9 +80,14 @@ class HomeController extends Controller
         $announcements = DB::table('announcements as a')
             ->join('users', 'a.user_id', '=', 'users.id')
             ->select('a.*', 'users.name', 'users.email')
+            ->whereNull('a.deleted_at')
             ->take(3)
             ->orderBy('created_at', 'DESC')
             ->get();
+
+        echo "<pre>";
+        print_r($announcements);
+        die();
 
         $users = User::orderBy('created_at', 'DESC')->take(5)->get();
 
