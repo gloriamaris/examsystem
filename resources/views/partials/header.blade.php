@@ -3,11 +3,15 @@
     
     $isDropdownItemActive = strpos(\Route::current()->getName(), "users") !== false || strpos(\Route::current()->getName(), "roles") !== false || strpos(\Route::current()->getName(), "announcements") !== false;
 ?>
-
+<style>
+    .navbar-item img {
+        max-height: 50px;
+    }
+</style>
 <nav class="navbar navbar-height is-fixed-top" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a class="navbar-item" href="{{ route('home') }}">
-            <img src="{{ url('upou-exam-logo.png') }}" class="header-img">
+            <img src="{{ url('upou-exam-logo.png') }}">
         </a>
     </div>
 

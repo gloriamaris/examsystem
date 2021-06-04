@@ -40,7 +40,7 @@ Login to the UP Open University Exam System
                             <div class="field">
                                 <label class="label">
                                     Password
-                                    <a href="{{ route('auth.password.reset') }}" class="login-link" >Forgot password?</a>
+                                    {{-- <a href="{{ route('auth.password.reset') }}" class="login-link" >Forgot password?</a> --}}
                                 </label>
                                 <div class="control has-icons-left has-icons-right">
                                     <input class="input" name="password" type="password" placeholder="******" value="">
