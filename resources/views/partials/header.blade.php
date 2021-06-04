@@ -61,7 +61,7 @@
             @else
             <div class="navbar-item">
                 <div class="buttons">
-                    <a class="button is-primary" href="{{ route('tests.index') }}">
+                    <a class="button is-primary" href="{{ route('exams.create') }}">
                         <strong>Create exam</strong>
                     </a>
                     {!! Form::open(['route' => 'auth.logout', 'id' => 'logout']) !!}
