@@ -26,7 +26,7 @@ Dashboard - UP Online Examination System
                             </div>
                         </div>
                         <div class="panel-block is-justify-content-end">
-                            @if ($exam->test_id == true)
+                            @if (!empty($exam->test_id))
                                 <a href="{{ route('results.show', $exam->test_id) }}" class="button is-outlined is-info">View Results</a>
                             @else
                                 <a href="{{ route('tests.show', $exam->id) }}" class="button is-info"> Take Exam</a>
