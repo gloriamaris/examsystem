@@ -7,7 +7,7 @@
 <nav class="navbar navbar-height is-fixed-top" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a class="navbar-item" href="{{ route('home') }}">
-            <img src="{{ url('upou-exam-logo.png') }}" class="header-img">
+            <img src="{{ url('upou-exam-logo.png') }}">
         </a>
     </div>
 
